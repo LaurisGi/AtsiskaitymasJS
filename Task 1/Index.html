@@ -18,12 +18,19 @@
         <h1 class="headline">Weight Converter</h1>
         <!-- Users input -->
         <form>
-          <input type="text" id="search" placeholder="Enter kilograms..." />
-          <input type="submit" id="submit-btn" value="Calculate" />
+          <input type="number" id="search" placeholder="Enter kilograms..." />
+          <input data-modal-target="#output" type="submit" id="submit-btn" value="Calculate">
         </form>
         <!-- Place for output after form submission -->
-        <div id="output"></div>
+        <div class="modal" id="output">
+          <div class="modal-header">
+            <div class="title">Converted values</div>
+            <button data-close-button class="close-button">&times;</button>
+          </div>
+          <div id="modal-body"></div>
+        </div>
       </div>
+      <div id="overlay" class=""></div>
     </main>
 
     <footer>
