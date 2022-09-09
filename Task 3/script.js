@@ -12,3 +12,27 @@ turėti bent minimalų stilių ir būti responsive;
 -------------------------------------------------------------------------- */
 
 const ENDPOINT = 'https://api.github.com/users';
+
+const getBtn = document.getElementById('btn');
+const output = document.getElementById('output');
+const message = document.getElementById('message');
+const getData = () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', ENDPOINT);
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+        const data = xhr.response;
+        message.remove()
+        getBtn.removeEventListener('click', getData);
+        data.forEach(arr => {
+            const loginElem = arr.login;
+            const avatarElem = arr.avatar_url;
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('data-container');
+            wrapper.innerHTML = `<img class="avatar" src="${avatarElem}"><div>${loginElem}</div>`;
+            output.appendChild(wrapper);
+        })
+    };
+    xhr.send();
+};
+getBtn.addEventListener('click', getData);
